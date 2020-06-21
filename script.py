@@ -1,6 +1,10 @@
 from bottle import route, run, template, get, post, request
 import os
 import subprocess
+import webbrowser
+
+host = '0.0.0.0'
+port = 8091
 
 @route('/hello/<name>')
 def index(name):
@@ -87,12 +91,18 @@ def controller():
     
     if (btnLogs):
         print("Show logs...")
-        print(sendCommand("cat /home/gui/Lilou/logs/latest.log"))
+        webbrowser.open("http://{}/logs:{}".format(host, port))
 
     if (cmd):
         print(sendServerCommand(cmd))
 
     return mcServ()
+
+@route("/logs", method="POST")
+def logs():
+    #return sendCommand("cat /home/gui/Lilou/logs/latest.log")
+    with open("/home/gui/Lilou/logs/latest.log", "r") as file:
+        return file.read()
 
 def getServiceStatus():
     process = subprocess.Popen("systemctl status MCServ.service", shell = True, stdout=subprocess.PIPE).stdout.read()
@@ -115,4 +125,4 @@ def sendCommand(command):
     process = subprocess.Popen(command, shell = True, stdout=subprocess.PIPE).stdout.read()
     return process
 
-run(host='0.0.0.0', port=8091)
+run(host=host, port=port)
