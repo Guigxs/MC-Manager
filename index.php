@@ -27,6 +27,7 @@
             }
             else if (array_key_exists('showConsole', $_POST)){
                 echo 'console';
+                echo "<div class='terminal'><div class='console'> <?php echo $out?></div><div class='command'><form method='post'><div class='form-group row pl-4 pr-4 pt-2'> <input type='text' name='commandSend' id='commandSend', class='form-control col-sm-10'></input> <input type='submit' class='btn btn-secondary btn-sm col-sm-2' value='Send' name='sendCommand'></input></div></form></div></div>";
             }
 
             else if (array_key_exists('startServer', $_POST)){
@@ -45,22 +46,7 @@
             }
         ?>
 
-        <div class="terminal">
-            <div class="console">
-                <?php echo $out?>
-            </div>
-
-            <div class="command">
-                <form method="post">
-                    <div class="form-group row pl-4 pr-4 pt-2">
-                        
-                        <input type="text" name="commandSend" id="commandSend", class="form-control col-sm-10"></input>
-                        <input type="submit" class='btn btn-secondary btn-sm col-sm-2' value='Send' name='sendCommand'></input>
-                    
-                    </div>
-                </form>
-            </div>
-        </div>
+        
     
 
         <!-- Optional JavaScript -->
