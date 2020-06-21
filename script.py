@@ -1,7 +1,7 @@
-from bottle import route, run, template, get, post, request
+from bottle import route, run, template, get, post, request, redirect
 import os
 import subprocess
-import webbrowser
+
 
 host = '0.0.0.0'
 port = 8091
@@ -91,7 +91,7 @@ def controller():
     
     if (btnLogs):
         print("Show logs...")
-        webbrowser.open("http://{}:{}/logs".format(host, port))
+        redirect("/logs")
 
     if (cmd):
         print(sendServerCommand(cmd))
