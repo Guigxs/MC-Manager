@@ -3,15 +3,15 @@
     
     if (preg_match('/\bActive: active\b/', $output)){
         $val = "Running";
-        echo "<div style='color: green;'>$val</div>";
+        echo "<b style='color: green;'>$val</b>";
     }
     else if (preg_match('/\bActive: inactive\b/', $output)){
         $val = "Not running";
-        echo "<div style='color: red;'>$val</div>";
+        echo "<b style='color: red;'>$val</b>";
     }
     else{
         $val = "Error";
-        echo "<div style='color: red;'>$val</div>";
+        echo "<b style='color: red;'>$val</b>";
     }
 
     echo "<p>$output</p>"
