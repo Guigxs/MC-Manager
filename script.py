@@ -49,9 +49,14 @@ def mcServ():
                                 <input type="submit" class='btn btn-secondary btn-sm col-sm-2' value='Send' name='sendCommand'></input>
                             
                             </div>
-                            <input type="submit" class='btn btn-primary btn-sm col-sm-2' value='Start server' name='startServer'></input>
-                            <input type="submit" class='btn btn-danger btn-sm col-sm-2' value='Stop server' name='stopServer'></input>
-                            <input type="submit" class='btn btn-info btn-sm col-sm-2' value='Show logs' name='showLogs'></input>
+                            
+                            <div style="text-align : center;">
+
+                                <input type="submit" class='btn btn-primary btn-sm col-sm-3' value='Start server' name='startServer'></input>
+                                <input type="submit" class='btn btn-danger btn-sm col-sm-3' value='Stop server' name='stopServer'></input>
+                                <input type="submit" class='btn btn-info btn-sm col-sm-3' value='Show logs' name='showLogs'></input>
+                            
+                            </div>
                         </form>
                     </div>
                 </div>
