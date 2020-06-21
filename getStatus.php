@@ -9,7 +9,7 @@
     else if (preg_match('/\bActive: inactive\b/', $output)){
         $val = "Not running";
         echo "<div class='status'>Status: <b style='color: red;'>$val</b></div>";
-        echo "<div class='start'><form method='post'><input type='submit' class='btn btn-primary' value='Start server' name='startServer'></input></form></div>";
+        echo "<div class='start'><form method='post'><input type='submi' class='btn btn-primary' value='Start server' name='startServer'></input></form></div>";
     }
     else{
         $val = "Error";

@@ -5,3 +5,11 @@
 .start{
     text-align: center;
 }
+.terminal{
+    text-align: center;
+    border-style: solid;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 20px;
+    overflow: scroll;
+}
