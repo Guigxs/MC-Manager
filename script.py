@@ -75,8 +75,8 @@ def mcServ(commands=None):
 
 @route("/", method='POST')
 def controller():
-    cmd = request.forms.get('commandSend')
-    process = subprocess.Popen([cmd], shell = True, stdout=subprocess.PIPE).stdout.read()
+    cmd = request.forms.get('commandSend').split()
+    process = subprocess.Popen(cmd, shell = True, stdout=subprocess.PIPE).stdout.read()
     print(process)
     return mcServ()
 
