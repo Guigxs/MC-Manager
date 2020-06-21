@@ -41,7 +41,8 @@
 
             if (array_key_exists('sendCommand', $_POST)){
                 $cmd = $_POST["commandSend"];
-                $out = shell_exec("screen -S MCServ -X stuff '$cmd'");
+                //$out = shell_exec("screen -S MCServ -X stuff '$cmd\n'");
+                $out = shell_exec("screen -ls");
             }
         ?>
 
