@@ -74,7 +74,7 @@ def mcServ():
 def controller():
     cmd = request.forms.get('commandSend')
     btnStart = request.forms.get('startServer')
-    btnStop = request.forms.get('stoptServer')
+    btnStop = request.forms.get('stopServer')
     btnLogs = request.forms.get('showLogs')
     
     if (btnStart):
