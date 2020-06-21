@@ -100,7 +100,9 @@ def controller():
 
 @route("/logs", method="GET")
 def logs():
-    return sendCommand("cat /home/gui/Lilou/logs/latest.log")
+    out = sendCommand("cat /home/gui/Lilou/logs/latest.log")
+
+    return out.replace("\n", "<br>")
     # with open("/home/gui/Lilou/logs/latest.log", "r") as file:
     #     return file.read()
 
