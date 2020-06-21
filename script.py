@@ -12,7 +12,7 @@ def index(name):
 
 @get("/")
 def mcServ(commands=None):
-    status = getServiceStatus()
+    
 
     return '''
         <!doctype html>
@@ -35,11 +35,11 @@ def mcServ(commands=None):
                     <a class="navbar-brand" href="#">Minecraft Manager</a>
                 </div>
 
-                <div class='status'>Status: {} </div>
+                <div class='status'>Status: </div>
 
                 <div class="terminal">
                     <div class="console">
-                        {}
+                        
                     </div>
 
                     <div class="command">
@@ -70,7 +70,7 @@ def mcServ(commands=None):
 
         </html>
 
-    '''.format(status, "hah")
+    '''
 
 @route("/", method='POST')
 def controller():
@@ -78,7 +78,7 @@ def controller():
 
     stream = os.popen(cmd)
     print(stream.read())
-    return mcServ(stream.read())
+    return mcServ()
 
 def getServiceStatus():
     stream = os.popen("service MCServ status")
