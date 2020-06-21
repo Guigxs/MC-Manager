@@ -98,7 +98,7 @@ def controller():
 
     return mcServ()
 
-@route("/logs", method="POST")
+@route("/logs", method="GET")
 def logs():
     #return sendCommand("cat /home/gui/Lilou/logs/latest.log")
     with open("/home/gui/Lilou/logs/latest.log", "r") as file:
