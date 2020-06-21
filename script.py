@@ -1,5 +1,6 @@
 from bottle import route, run, template, get, post, request
 import os
+import subprocess
 
 @route('/hello/<name>')
 def index(name):
@@ -75,9 +76,9 @@ def mcServ(commands=None):
 @route("/", method='POST')
 def controller():
     cmd = request.forms.get('commandSend')
-
-    stream = os.popen(cmd)
-    print(stream.read())
+    out = subprocess.run(["ls"])
+    
+    print(out.returncode)
     return mcServ()
 
 def getServiceStatus():
