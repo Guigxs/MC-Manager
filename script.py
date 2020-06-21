@@ -7,14 +7,8 @@ def index(name):
     return template('<b>Hello {{name}}</b>!', name=name)
 
 
-# @route("/")
-# def mcServ():
-#     return "Hello toi"
-
 @get("/")
 def mcServ(commands=None):
-    
-
 
     return '''
         <!doctype html>
@@ -83,6 +77,7 @@ def controller():
 def getServiceStatus():
     process = subprocess.Popen("systemctl status MCServ.service", shell = True, stdout=subprocess.PIPE).stdout.read()
     print(process.decode())
+    print(process = subprocess.Popen("pwd", shell = True, stdout=subprocess.PIPE).stdout.read().decode())
     if ("Active: active" in process.decode()):
         return "<b style='color : green;'>Connected</b>"
 
