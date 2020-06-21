@@ -86,7 +86,7 @@ def getServiceStatus():
         return "OUI"
 
 def sendCommand(command):
-    process = subprocess.Popen("screen -S MCServ -X stuff '{}'".format(cmd), shell = True, stdout=subprocess.PIPE).stdout.read()
+    process = subprocess.Popen("screen -S MCServ -X stuff '{}'".format(command), shell = True, stdout=subprocess.PIPE).stdout.read()
     return process
 
 run(host='0.0.0.0', port=8091)
