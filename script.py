@@ -8,7 +8,7 @@ def index(name):
 
 
 @get("/")
-def mcServ(commands=None):
+def mcServ():
 
     return '''
         <!doctype html>
@@ -31,11 +31,10 @@ def mcServ(commands=None):
                     <a class="navbar-brand" href="#">Minecraft Manager</a>
                 </div>
 
-                <div class='status'>Status: {}</div>
+                <div class='status' style='font-size: 50px; text-align : center;'>Status: {}</div>
 
                 <div class="terminal">
                     <div class="console">
-                        {}
                     </div>
 
                     <div class="command">
@@ -46,6 +45,9 @@ def mcServ(commands=None):
                                 <input type="submit" class='btn btn-secondary btn-sm col-sm-2' value='Send' name='sendCommand'></input>
                             
                             </div>
+                            <input type="submit" class='btn btn-primary btn-sm col-sm-2' value='Start server' name='startServer'></input>
+                            <input type="submit" class='btn btn-danger btn-sm col-sm-2' value='Stop server' name='stopServer'></input>
+                            <input type="submit" class='btn btn-info btn-sm col-sm-2' value='Show logs' name='showLogs'></input>
                         </form>
                     </div>
                 </div>
@@ -66,18 +68,32 @@ def mcServ(commands=None):
 
         </html>
 
-    '''.format(getServiceStatus(), commands)
+    '''.format(getServiceStatus())
 
 @route("/", method='POST')
 def controller():
     cmd = request.forms.get('commandSend')
+    btnStart = request.forms.get('startServer')
+    btnStop = request.forms.get('stoptServer')
+    btnLogs = request.forms.get('showLogs')
+    
+    if (btnStart):
+        print("Starting server...")
 
-    return mcServ(sendCommand(cmd))
+    if (btnStop):
+        print("Stopping server...")
+    
+    if (btnLogs):
+        print("Show logs...")
+
+    if (cmd):
+        print(sendServerCommand(cmd))
+
+    return mcServ()
 
 def getServiceStatus():
     process = subprocess.Popen("systemctl status MCServ.service", shell = True, stdout=subprocess.PIPE).stdout.read()
     print(process.decode())
-    print(subprocess.Popen("pwd", shell = True, stdout=subprocess.PIPE).stdout.read().decode())
 
     if ("Active: active" in process.decode()):
         return "<b style='color : green;'>Connected</b>"
@@ -86,10 +102,14 @@ def getServiceStatus():
         return "<b style='color : red;'>Not connected</b>"
     
     else :
-        return "<b style='color : green;'>Error</b>"
+        return "<b style='color : red;'>Error</b>"
+
+def sendServerCommand(command):
+    process = subprocess.Popen("screen -S MCServ -X stuff '{}\n'".format(command), shell = True, stdout=subprocess.PIPE).stdout.read()
+    return process
 
 def sendCommand(command):
-    process = subprocess.Popen("screen -S MCServ -X stuff '{}\n'".format(command), shell = True, stdout=subprocess.PIPE).stdout.read()
+    process = subprocess.Popen(command, shell = True, stdout=subprocess.PIPE).stdout.read()
     return process
 
 run(host='0.0.0.0', port=8091)
