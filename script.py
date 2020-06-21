@@ -40,7 +40,7 @@ def mcServ(commands=None):
 
                 <div class="terminal">
                     <div class="console">
-                        
+                        {}
                     </div>
 
                     <div class="command">
@@ -71,19 +71,22 @@ def mcServ(commands=None):
 
         </html>
 
-    '''
+    '''.format(commands)
 
 @route("/", method='POST')
 def controller():
     cmd = request.forms.get('commandSend')
-    process = subprocess.Popen(cmd, shell = True, stdout=subprocess.PIPE).stdout.read()
-    print(process)
-    return mcServ()
+
+    return mcServ(sendCommand(cmd))
 
 def getServiceStatus():
     stream = os.popen("service MCServ status")
     print(stream.read())
     if ("Active: active" in stream.read()):
         return "OUI"
+
+def sendCommand(command):
+    process = subprocess.Popen("screen -S MCServ -X stuff '{}'".format(cmd), shell = True, stdout=subprocess.PIPE).stdout.read()
+    return process
 
 run(host='0.0.0.0', port=8091)
