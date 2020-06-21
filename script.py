@@ -83,7 +83,7 @@ def controller():
 def getServiceStatus():
     process = subprocess.Popen("systemctl status MCServe.service", shell = True, stdout=subprocess.PIPE).stdout.read()
     print(process.decode())
-    if ("Active" in process):
+    if ("Active" in process.decode()):
         return "OUI"
 
 def sendCommand(command):
