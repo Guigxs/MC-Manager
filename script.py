@@ -76,9 +76,11 @@ def mcServ(commands=None):
 @route("/", method='POST')
 def controller():
     cmd = request.forms.get('commandSend')
-    out = subprocess.run(["ls"])
-    
-    print(out.returncode)
+    process = subprocess.Popen(['echo', 'More output'],
+                     stdout=subprocess.PIPE, 
+                     stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+    print(stdout)
     return mcServ()
 
 def getServiceStatus():
