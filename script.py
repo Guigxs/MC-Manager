@@ -15,6 +15,7 @@ def index(name):
 def mcServ(commands=None):
     
 
+
     return '''
         <!doctype html>
         <html lang="en">
@@ -36,7 +37,7 @@ def mcServ(commands=None):
                     <a class="navbar-brand" href="#">Minecraft Manager</a>
                 </div>
 
-                <div class='status'>Status: </div>
+                <div class='status'>Status: {}</div>
 
                 <div class="terminal">
                     <div class="console">
@@ -71,7 +72,7 @@ def mcServ(commands=None):
 
         </html>
 
-    '''.format(commands)
+    '''.format(getServiceStatus(), commands)
 
 @route("/", method='POST')
 def controller():
