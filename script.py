@@ -87,6 +87,7 @@ def controller():
     
     if (btnLogs):
         print("Show logs...")
+        print(sendCommand("cat /home/gui/Lilou/logs/latest.log"))
 
     if (cmd):
         print(sendServerCommand(cmd))
