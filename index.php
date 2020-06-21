@@ -21,22 +21,23 @@
     <?php 
         include "getStatus.php";
         
-        if (array_key_exists('showLogs', $_POST)){
-            echo 'logs';
-            echo shell_exec("service MCServ status");
+        if (array_key_exists('stopServer', $_POST)){
+            echo 'stopping';
+            echo shell_exec("service MCServ stop");
         }
         else if (array_key_exists('showConsole', $_POST)){
             echo 'console';
         }
+
         else if (array_key_exists('startServer', $_POST)){
             echo 'starting';
-            shell_exec("service MCServ start");
-        }
-        else if (array_key_exists('stopServer', $_POST)){
-            echo 'stopping';
-            shell_exec("service MCServ stop");
+            echo shell_exec("service MCServ start");
         }
 
+        else if (array_key_exists('showLogs', $_POST)){
+            echo 'logs';
+            echo shell_exec("service MCServ status");
+        }
     ?>
 
     
