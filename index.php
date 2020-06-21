@@ -18,8 +18,16 @@
         <a class="navbar-brand" href="#">Minecraft Manager</a>
     </div>
 
-    <div class="status">Status : <?php include "getStatus.php"?></div>
+    <?php 
+        include "getStatus.php";
+        
+        if (array_key_exists('showLogs', $_POST)){
+            echo 'hash';
+        }
 
+    ?>
+
+    
     
 
     <!-- Optional JavaScript -->
