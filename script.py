@@ -77,7 +77,7 @@ def controller():
     cmd = request.forms.get('commandSend')
 
     stream = os.popen(cmd)
-
+    print(stream.read())
     return mcServ(stream.read())
 
 def getServiceStatus():
