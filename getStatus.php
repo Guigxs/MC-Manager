@@ -14,5 +14,5 @@
         echo "<b style='color: red;'>$val</b>";
     }
 
-    echo "<p>$output</p>"
+    #echo "<p>$output</p>"
 ?>
