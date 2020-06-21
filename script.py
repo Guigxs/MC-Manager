@@ -11,8 +11,7 @@ def index(name):
 #     return "Hello toi"
 
 @get("/")
-def mcServ():
-
+def mcServ(commands=None):
     status = getServiceStatus()
 
     return '''
@@ -40,6 +39,7 @@ def mcServ():
 
                 <div class="terminal">
                     <div class="console">
+                        {}
                     </div>
 
                     <div class="command">
@@ -70,7 +70,7 @@ def mcServ():
 
         </html>
 
-    '''.format(status)
+    '''.format(status, "hah")
 
 @route("/", method='POST')
 def controller():
@@ -78,12 +78,12 @@ def controller():
 
     stream = os.popen(cmd)
 
-    return stream.read()
+    return mcServ(stream.read())
 
 def getServiceStatus():
     stream = os.popen("service MCServ status")
-
+    print(stream.read())
     if ("Active: active" in stream.read()):
         return "OUI"
 
-run(host='localhost', port=8090, debug=True)
+run(host='0.0.0.0', port=8091)
