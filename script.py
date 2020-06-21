@@ -91,7 +91,7 @@ def controller():
     
     if (btnLogs):
         print("Show logs...")
-        webbrowser.open("http://{}/logs:{}".format(host, port))
+        webbrowser.open("http://{}:{}/logs".format(host, port))
 
     if (cmd):
         print(sendServerCommand(cmd))
@@ -100,9 +100,9 @@ def controller():
 
 @route("/logs", method="GET")
 def logs():
-    #return sendCommand("cat /home/gui/Lilou/logs/latest.log")
-    with open("/home/gui/Lilou/logs/latest.log", "r") as file:
-        return file.read()
+    return sendCommand("cat /home/gui/Lilou/logs/latest.log")
+    # with open("/home/gui/Lilou/logs/latest.log", "r") as file:
+    #     return file.read()
 
 def getServiceStatus():
     process = subprocess.Popen("systemctl status MCServ.service", shell = True, stdout=subprocess.PIPE).stdout.read()
