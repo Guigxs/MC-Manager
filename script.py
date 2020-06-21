@@ -101,7 +101,12 @@ def controller():
 @route("/logs", method="GET")
 def logs():
     out = sendCommand("cat /home/gui/Lilou/logs/latest.log | aha").decode()
-    return out
+    return '''
+    {}
+    <form method='GET' action='/'>
+        <input class='btn btn-secondary' value='Back to server page' type="submit"></input>
+    </form>
+    '''.format(out)
 
 
 def getServiceStatus():
