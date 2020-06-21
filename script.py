@@ -79,9 +79,11 @@ def controller():
     
     if (btnStart):
         print("Starting server...")
+        print(sendCommand("systemctl start MCServ.service"))
 
     if (btnStop):
         print("Stopping server...")
+        print(sendCommand("systemctl stop MCServ.service"))
     
     if (btnLogs):
         print("Show logs...")
