@@ -81,7 +81,7 @@ def controller():
     return mcServ(sendCommand(cmd))
 
 def getServiceStatus():
-    process = subprocess.Popen("screen -S MCServ -X stuff '{}\n'".format(command), shell = True, stdout=subprocess.PIPE).stdout.read()
+    process = subprocess.Popen("service MCServ state", shell = True, stdout=subprocess.PIPE).stdout.read()
     print(process)
     if ("Active" in process):
         return "OUI"
