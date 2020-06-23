@@ -73,28 +73,39 @@ def getInfos():
     process = subprocess.Popen("sudo systemctl status MCServ.service", shell = True, stdout=subprocess.PIPE).stdout.read()
     out = [i.rstrip().lstrip() for i in process.decode().split("\n")]
 
-    state = dict()
+    globalState = dict()
+    states = dict()
+
     for line in out:
         if "Loaded:" in line:
             print("loaded")
-            state["Loaded"] = line
+            globalState["Loaded"] = line
+            states["ServiceState"] = line.split(";")[1].rstrip().lstrip()
+            states["ServiceName"] = line.split("(")[1].split(";")[0].rstrip().lstrip()
         elif "Active:" in line:
             print("active")
-            state["Active"] = line
+            globalState["Active"] = line
+            states["Time"] = line.split(";")[-1].rstrip().lstrip()
         elif "Main PID:" in line:
             print("main pid")
-            state["Main PID"] = line
+            globalState["Main PID"] = line
+            states["PID"] = line.split(":")[-1].rstrip().lstrip()
         elif "Tasks:" in line:
             print("tasks")
-            state["Tasks"] = line
+            globalState["Tasks"] = line
         elif "Memory:" in line:
             print("Memory")
-            state["Loaded"] = line
+            globalState["Loaded"] = line
+            states["Memory"] = line.split(":")[-1].rstrip().lstrip()
         elif "CGroup:" in line:
             print("cgroup")
-            state["CGroup"] = line
+            globalState["CGroup"] = line
 
-    print("---------------------{}".format(state))
+
+    print("---------------------{}".format(globalState))
+    print(states)
+
+    return template('templates/info', **states)
 
 
 def sendServerCommand(command):
@@ -104,6 +115,7 @@ def sendServerCommand(command):
 def sendCommand(command):
     process = subprocess.Popen(command, shell = True, stdout=subprocess.PIPE).stdout.read()
     return process
+
 
 
 if __name__ == "__main__":

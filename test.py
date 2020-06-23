@@ -1,5 +1,3 @@
-a = "  salut ca va ?\n hey  "
+a = "Main PID: 4133 (screen)"
 
-print([i.rstrip().lstrip() for i in a.split("\n")])
-
-print(a.split())
+print(a.split(":")[-1].lstrip())
