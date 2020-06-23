@@ -10,6 +10,7 @@
     {{!get("Logs", "Error while reading logs...")}}
 
     <form method='GET' action='/'>
+        <a name="end"></a>
         <input class='btn btn-secondary btn-sm' value='Back to server page' type="submit"></input>
     </form>
 

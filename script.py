@@ -34,7 +34,7 @@ def controller():
     
     if (btnLogs):
         print("Show logs...")
-        redirect("/logs")
+        redirect("/logs#end")
 
     if (cmd):
         print(sendServerCommand(cmd))
