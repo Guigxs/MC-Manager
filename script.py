@@ -11,7 +11,7 @@ def index(name):
 
 @get("/")
 def mcServ():
-    return template('templates/main', Status=getServiceStatus(), State="coucou")
+    return template('templates/main', Status=getServiceStatus(), State=getInfos())
 
 @route("/", method='POST')
 def controller():
@@ -69,8 +69,8 @@ def getServiceStatus():
     else :
         return "<b style='color : red;'>Error</b>"
 
-def getStatesInfo():
-    process = subprocess.Popen("sudo systemctl status MCServ.service | grep Active", shell = True, stdout=subprocess.PIPE).stdout.read()
+def getInfos():
+    process = subprocess.Popen("sudo systemctl status MCServ.service", shell = True, stdout=subprocess.PIPE).stdout.read()
 
     print(process.decode().split("\n"))
 
