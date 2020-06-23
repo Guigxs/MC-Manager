@@ -94,7 +94,7 @@ def getInfos():
             print("cgroup")
             state["CGroup"] = line
 
-    print("---------------------"+state)
+    print("---------------------{}".format(state))
 
 
 def sendServerCommand(command):
