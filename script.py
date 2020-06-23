@@ -71,8 +71,30 @@ def getServiceStatus():
 
 def getInfos():
     process = subprocess.Popen("sudo systemctl status MCServ.service", shell = True, stdout=subprocess.PIPE).stdout.read()
+    out = [i.rstrip().lstrip() for i in process.decode().split("\n")]
 
-    print(process.decode().split("\n"))
+    state = dict()
+    for line in out:
+        if "Loaded:" in line:
+            print("loaded")
+            state["Loaded"] = line
+        elif "Active:" in line:
+            print("active")
+            state["Active"] = line
+        elif "Main PID:" in line:
+            print("main pid")
+            state["Main PID"] = line
+        elif "Tasks:" in line:
+            print("tasks")
+            state["Tasks"] = line
+        elif "Memory:" in line:
+            print("Memory")
+            state["Loaded"] = line
+        elif "CGroup:" in line:
+            print("cgroup")
+            state["CGroup"] = line
+
+    print("---------------------"+state)
 
 
 def sendServerCommand(command):

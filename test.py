@@ -1,4 +1,5 @@
-a = "salut ca va ?"
+a = "  salut ca va ?\n hey  "
 
-print(a.split("\n"))
+print([i.rstrip().lstrip() for i in a.split("\n")])
 
+print(a.split())
