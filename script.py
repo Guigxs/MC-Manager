@@ -71,7 +71,7 @@ def getInfos():
             print("loaded")
             globalState["Loaded"] = line
             states["ServiceState"] = line.split(";")[1].rstrip().lstrip()
-            states["ServiceName"] = line.split("(")[1].split(";")[0].rstrip().lstrip()
+            states["ServiceName"] = line.split("(")[1].split(";")[0].split("/")[-1].rstrip().lstrip()
         elif "Active:" in line:
             print("active")
             globalState["Active"] = line
