@@ -14,8 +14,12 @@
     </head>
 
     <body>
-        <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Minecraft Manager</a>
+        <div class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+            <a class="navbar-brand" href="/">Minecraft Manager</a>
+            <a class="navbar-brand" href="/">
+                Reload
+                <img src="/static/reload.png" width="15" height="15" alt="">
+            </a>
         </div>
 
         <div class='status'>Status: {{!Status}}</div>
