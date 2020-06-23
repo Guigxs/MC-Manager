@@ -20,7 +20,7 @@
 
         <div class='status'>Status: {{!Status}}</div>
 
-        <div class='state'>{{!State}}</div>
+        <div class='states'>{{!State}}</div>
 
         <div class="terminal">
             <div class="console">
