@@ -1,9 +1,13 @@
 from bottle import route, run, template, get, post, request, redirect, static_file, SimpleTemplate
 import os
+import platform
 import subprocess
 
 host = '0.0.0.0'
 port = 8091
+
+if platform.system() == "Linux":
+    os.chdir("/home/gui/developement/MC-Manager")
 
 @route('/hello/<name>')
 def index(name):
